@@ -14,7 +14,7 @@ A dead-simple fullscreen digital clock for iPad 2 (iOS 9.3.5). No dependencies, 
 On the iPad, open Safari and go to the raw URL for `clock.html`:
 
 ```
-https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/clock.html
+[https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/clock.html](https://github.com/WilCF/simpleclockhtml)
 ```
 
 Wait for it to fully load. The appcache will cache it for offline use.
