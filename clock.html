@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html manifest="clock.appcache">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>Clock</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  overflow: hidden;
+}
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+#clock {
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+</style>
+</head>
+<body>
+<div id="clock">00:00</div>
+<script>
+function pad(n) {
+  return n < 10 ? '0' + n : '' + n;
+}
+
+function resize() {
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  // 5 chars in HH:MM, size to fill ~85% of the shorter dimension
+  // empirically: each char is ~0.6em wide, so total width ~= fontSize * 5 * 0.55
+  // fit within width: fontSize = w / (5 * 0.55) = w / 2.75
+  // fit within height: fontSize = h * 0.85
+  var byWidth = Math.floor(w / 2.75);
+  var byHeight = Math.floor(h * 0.85);
+  var size = Math.min(byWidth, byHeight);
+  document.getElementById('clock').style.fontSize = size + 'px';
+}
+
+function tick() {
+  var now = new Date();
+  document.getElementById('clock').innerHTML =
+    pad(now.getHours()) + ':' + pad(now.getMinutes());
+}
+
+tick();
+resize();
+setInterval(tick, 1000);
+window.onresize = resize;
+window.onorientationchange = function() {
+  setTimeout(resize, 100);
+};
+</script>
+</body>
+</html>
