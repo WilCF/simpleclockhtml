@@ -1,6 +1,8 @@
 CACHE MANIFEST
-# v1
+# v2 — 2026-06-04
 CACHE:
 clock.html
+FALLBACK:
+./ clock.html
 NETWORK:
 *
